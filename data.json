@@ -1,0 +1,43 @@
+{"products": [
+    {
+        "product_id": "1",
+        "name": "Frankenstein",
+        "author": "Mary Shelley",
+        "description": "etc",
+        "image": "https://m.media-amazon.com/images/I/710p9SUfZtL._AC_UF1000,1000_QL80_.jpg",
+        "price": "99",
+        "sale": true,
+        "discounted_price": "70"
+    },
+    {
+        "product_id": "2",
+        "name": "The Secret History",
+        "author": "Donna Tartt",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9780140167771_383x_the-secret-history_haftad",
+        "price": "149",
+        "sale": true,
+        "discounted_price": "104"
+    },
+    {
+        "product_id": "3",
+        "name": "Dance Dance Dance",
+        "author": "Murakami",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9780099448761_383x_dance-dance-dance_haftad",
+        "price": "99",
+        "sale": true,
+        "discounted_price": "70"
+    },
+    {
+        "product_id": "4",
+        "name": "No longer human",
+        "author": "Osamu Dazai",
+        "description": "etc",
+        "image": "https://s2.adlibris.com/images/1431493/no-longer-human.jpg",
+        "price": "99",
+        "sale": false,
+        "discounted_price": "0"
+    }
+    ]
+}
