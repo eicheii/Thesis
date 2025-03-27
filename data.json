@@ -4,9 +4,9 @@
         "name": "Frankenstein",
         "author": "Mary Shelley",
         "description": "etc",
-        "image": "https://m.media-amazon.com/images/I/710p9SUfZtL._AC_UF1000,1000_QL80_.jpg",
+        "image": "https://image.bokus.com/images/9780141439471_383x_frankenstein_haftad",
         "price": "99",
-        "sale": true,
+        "sale": false,
         "discounted_price": "70"
     },
     {
@@ -24,10 +24,10 @@
         "name": "Dance Dance Dance",
         "author": "Murakami",
         "description": "etc",
-        "image": "https://image.bokus.com/images/9780099448761_383x_dance-dance-dance_haftad",
-        "price": "99",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320549978i/334598.jpg",
+        "price": "129",
         "sale": true,
-        "discounted_price": "70"
+        "discounted_price": "79"
     },
     {
         "product_id": "4",
@@ -36,8 +36,98 @@
         "description": "etc",
         "image": "https://s2.adlibris.com/images/1431493/no-longer-human.jpg",
         "price": "99",
+        "sale": true,
+        "discounted_price": "56"
+    },
+    {
+        "product_id": "5",
+        "name": "Moby Dick",
+        "author": "Herman Melville",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9781840228304_383x_moby-dick",
+        "price": "99",
         "sale": false,
-        "discounted_price": "0"
+        "discounted_price": "79"
+    },
+    {
+        "product_id": "6",
+        "name": "White Nights",
+        "author": "Fyodor Dostoevsky",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9780241252086_383x_white-nights_haftad",
+        "price": "99",
+        "sale": false,
+        "discounted_price": "49"
+    },
+    {
+        "product_id": "7",
+        "name": "To the Lighthouse",
+        "author": "Virginia Woolf",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9781847496577_383x_to-the-lighthouse_haftad",
+        "price": "109",
+        "sale": false,
+        "discounted_price": "79"
+    },
+    {
+        "product_id": "8",
+        "name": "Middlemarch",
+        "author": "George Eliot",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9780141199795_383x_middlemarch_haftad",
+        "price": "159",
+        "sale": false,
+        "discounted_price": "109"
+    },
+    {
+        "product_id": "9",
+        "name": "After Dark",
+        "author": "Haruki Murakami",
+        "description": "etc",
+        "image": "https://image.bokus.com/images/9780099520863_383x_after-dark_haftad",
+        "price": "99",
+        "sale": false,
+        "discounted_price": "70"
+    },
+    {
+        "product_id": "10",
+        "name": "Carmilla",
+        "author": "J. Sheridan Le Fanu",
+        "description": "etc",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657795822i/48037.jpg",
+        "price": "129",
+        "sale": false,
+        "discounted_price": "99"
+    },
+    {
+        "product_id": "11",
+        "name": "The Bell Jar",
+        "author": "Sylvia Plath",
+        "description": "etc",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1668645154i/56616095.jpg",
+        "price": "109",
+        "sale": false,
+        "discounted_price": "79"
+    },
+    {
+        "product_id": "12",
+        "name": "Ice",
+        "author": "Anna Kavan",
+        "description": "etc",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1537388039i/35074092.jpg",
+        "price": "159",
+        "sale": false,
+        "discounted_price": "109"
+    },
+    {
+        "product_id": "13",
+        "name": "Inferno",
+        "author": "Dante Alighieri",
+        "description": "etc",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1503313458i/8563674.jpg",
+        "price": "199",
+        "sale": false,
+        "discounted_price": "169"
     }
     ]
 }

@@ -1,6 +1,6 @@
 .container {
     margin: auto;
-    width: 100em;
+    width: 70em;
 }
 
 /* Banner */
@@ -9,10 +9,11 @@
     background-color: #ff524c;
     padding: 1em;
     margin: 0.7em;
+    margin-bottom: 3em;
 }
 
 .banner > .banner_information {
-    width: 50%;
+    width: 33%;
     padding: 2em;
     color: #eee;
 }
@@ -27,6 +28,10 @@
     flex-wrap: wrap;
     gap: 2em;
     flex-direction: row;
+}
+
+#data_container {
+    gap: 3.25em;
 }
 
 /* Product information */
@@ -54,7 +59,7 @@
 .product > .product_image {
     width: 100%;
     height: auto;
-    max-width: 10em;
+    max-width: 8em;
 }
 
 /* cart button */
