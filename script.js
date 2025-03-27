@@ -8,8 +8,8 @@ fetch("data.json")
         products.forEach(product => {
             if (product.sale) {
                 let saleProductHTML = `
-                <div class="product">
-                    <img src="${product.image}" alt="image" class="product_image">
+                <div class="product" data-id="${product.product_id}">
+                    <a href="#"><img src="${product.image}" alt="image" class="product_image"></a>
                     <div class="product_info">
                         <p><strong>${product.name}</strong></p>
                         <p class="discounted_price">${product.discounted_price} kr</p>
@@ -21,7 +21,7 @@ fetch("data.json")
             } else if (!product.sale) { // These are the 'non-sale' items
                 let productHTML = `
                 <div class="product">
-                    <img src="${product.image}" alt="image" class="product_image">
+                    <a href="#"><img src="${product.image}" alt="image" class="product_image"></a>
                     <div class="product_info">
                         <p><strong>${product.name}</strong></p>
                         <p>${product.price} kr</p>
@@ -34,3 +34,28 @@ fetch("data.json")
         });
     })
     .catch(error => console.error("Error loading data:", error));
+
+// Countdown timer
+const countDownDuration = 60 * 60 * 800;
+const startTime = new Date().getTime();
+const countDownDate = startTime + countDownDuration;
+
+const x = setInterval(function() {
+  const now = new Date().getTime();
+
+  const distance = countDownDate - now;
+
+  // Time calculations for hours, minutes and seconds
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("countdown_timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+  // If the countdown is finished, display "EXPIRED SOON"
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown_timer").innerHTML = "EXPIRED SOON";
+  }
+}, 1000);
