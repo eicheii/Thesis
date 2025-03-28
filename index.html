@@ -15,7 +15,7 @@
         <div class="banner">
             <div class="banner_information">
                 <h3>SALE</h3>
-                <h2 id="countdown_timer"></h2>
+                <p id="countdown_timer"></p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam consectetur eius sint debitis soluta consequatur inventore. Magnam modi non consectetur aut corporis? Tenetur sunt voluptas consequatur praesentium eveniet omnis.</p>
             </div>
             <div id="data_sale_container">
@@ -26,8 +26,27 @@
         <div id="data_container">
         <!-- The products not on sale are displayed here -->
         </div>
+
+        <!-- Modal -->
+        <div id="product_modal" class="modal">
+            <div class="modal_container">
+                <span class="close">&times;</span>
+                <div class="modal_book_img_content">
+                    <img id="modal_book_img" src="data:," alt="Book image" draggable="false">
+                </div>
+                <div class="modal_book_information">
+                    <h2 id="modal_book_title"></h2>
+                    <div class="modal_book_price">
+                        <p id="modal_book_discounted_price"></p>
+                        <p id="modal_book_original_price"></p>
+                    </div>
+                    <p id="modal_book_description"></p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

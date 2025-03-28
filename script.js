@@ -1,3 +1,4 @@
+// Fetch JSON data and display it in HTML
 fetch("data.json")
     .then(response => response.json())
     .then(data => {
@@ -8,8 +9,8 @@ fetch("data.json")
         products.forEach(product => {
             if (product.sale) {
                 let saleProductHTML = `
-                <div class="product" data-id="${product.product_id}">
-                    <a href="#"><img src="${product.image}" alt="image" class="product_image"></a>
+                <div class="product" data-id="${product.product_id}" style="cursor: pointer;">
+                    <img src="${product.image}" alt="image" class="product_image" draggable="false">
                     <div class="product_info">
                         <p><strong>${product.name}</strong></p>
                         <p class="discounted_price">${product.discounted_price} kr</p>
@@ -20,8 +21,8 @@ fetch("data.json")
                 displaySaleDiv.innerHTML += saleProductHTML;
             } else if (!product.sale) { // These are the 'non-sale' items
                 let productHTML = `
-                <div class="product">
-                    <a href="#"><img src="${product.image}" alt="image" class="product_image"></a>
+                <div class="product product_not_on_sale" data-id="${product.product_id}" style="cursor: pointer;">
+                    <img src="${product.image}" alt="image" class="product_image" draggable="false">
                     <div class="product_info">
                         <p><strong>${product.name}</strong></p>
                         <p>${product.price} kr</p>
@@ -59,3 +60,51 @@ const x = setInterval(function() {
     document.getElementById("countdown_timer").innerHTML = "EXPIRED SOON";
   }
 }, 1000);
+
+// Modal
+$(document).on("click", ".product", function () {
+    let id = $(this).attr("data-id");
+
+    $.getJSON("data.json", function (data) {
+        let products = data.products;
+
+        for (let product of products) {
+            if (product.product_id == id) {
+                $("#modal_book_img").attr("src", product.image);
+                $("#modal_book_title").text(product.name);
+                $("#modal_book_description").text(product.description);
+
+                if (product.sale) {
+                    $("#modal_book_discounted_price").text(product.discounted_price + " kr");
+                    $("#modal_book_original_price").text(product.price + " kr");
+
+                    // Add classes for specific CSS styling
+                    $("#modal_book_original_price").addClass("original-price-sale");
+                    $("#modal_book_discounted_price").addClass("discounted-price");
+                } else {
+                    $("#modal_book_discounted_price").text("");
+                    $("#modal_book_original_price").text(product.price + " kr");
+
+                    // Remove classes
+                    $("#modal_book_original_price").removeClass("original-price-sale");
+                    $("#modal_book_discounted_price").removeClass("discounted-price");
+                }
+
+                $("#product_modal").fadeIn();
+                return;
+            }
+        }
+    });
+});
+
+// Close modal when clicking "×"
+$(".close").click(function () {
+    $("#product_modal").fadeOut();
+});
+
+// Close modal when clicking outside the modal content
+$(window).click(function (e) {
+    if ($(e.target).is("#product_modal")) {
+        $("#product_modal").fadeOut();
+    } 
+});

@@ -1,3 +1,8 @@
+body {
+    margin-bottom: 4%;
+}
+
+/* Homepage */
 .container {
     margin: auto;
     width: 70em;
@@ -7,24 +12,25 @@
 .banner {
     display: flex;
     background-color: #ff524c;
-    padding: 1em;
-    margin: 0.7em;
-    margin-bottom: 3em;
+    padding: 1%;
+    margin: 1%;
+    margin-bottom: 3%;
 }
 
 .banner > .banner_information {
     width: 33%;
-    padding: 2em;
+    padding: 3%;
     color: #eee;
 }
 
 .banner > .banner_information > h3 {
+    margin-bottom: -10%;
     font-size: 35px;
-    margin-bottom: -20px;
 }
-.banner > .banner_information > h2 {
+.banner > .banner_information > #countdown_timer {
+    margin-bottom: -5%;
     font-size: 50px;
-    margin-bottom: -10px;
+    font-weight: bold;
 }
 
 /* Products */
@@ -41,10 +47,18 @@
 
 /* Product information */
 .product {
-    background-color: #eee;
     padding: 1em;
     margin: 0.7em;
     text-align: center;
+    background-color: #eee;
+    border-radius: 2px;
+}
+
+.product > .product_image {
+    width: 100%;
+    height: auto;
+    max-width: 8em;
+    border-radius: 2px;
 }
 
 .product_info > p {
@@ -61,10 +75,76 @@
     font-size: 12px;
 }
 
-.product > a > .product_image {
+.product_not_on_sale {
+    margin-bottom: -1em;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+}
+.modal_container {
+    display: flex;
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    width: 60%;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.modal_book_img_content {
+    width: 30%;
+}
+.modal_book_img_content > #modal_book_img {
     width: 100%;
     height: auto;
-    max-width: 8em;
+}
+
+.modal_book_information {
+    width: 60%;
+    margin-left: 5%;
+    text-align: justify;
+    overflow: auto;
+}
+.modal_book_price {
+    display: flex;
+}
+
+/* Style for the original price when the book is not on sale */
+#modal_book_original_price,
+#modal_book_discounted_price {
+    margin-top: -10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Style for the prices when the book is on sale */
+.original-price-sale {
+    margin-top: -1px !important;
+    margin-left: 3%;
+    text-decoration: line-through;
+    font-size: 18px !important;
+    font-weight: 100 !important;
+    color: #999;
+}
+
+.discounted-price {
+    color: #ff0000;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 /* cart button */
