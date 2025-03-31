@@ -9,10 +9,10 @@ fetch("data.json")
         products.forEach(product => {
             if (product.sale) {
                 let saleProductHTML = `
-                <div class="product product_on_sale" data-id="${product.product_id}" style="cursor: pointer;">
+                <div class="product product_on_sale" data-id="${product.product_id}">
                     <a href="product.html?id=${product.product_id}"><img src="${product.image}" alt="image" class="product_image" draggable="false"></a>
                     <div class="product_info">
-                        <p class="product_title"><strong>${product.name}</strong></p>
+                        <a href="product.html?id=${product.product_id}"><p class="product_title"><strong>${product.name}</strong></p></a>
                         <p class="discounted_price">${product.discounted_price} kr</p>
                         <p class="original_price">Original price: <s>${product.price} kr</s></p>
                     </div>
@@ -21,10 +21,10 @@ fetch("data.json")
                 displaySaleDiv.innerHTML += saleProductHTML;
             } else if (!product.sale) { // These are the 'non-sale' items
                 let productHTML = `
-                <div class="product product_not_on_sale" data-id="${product.product_id}" style="cursor: pointer;">
+                <div class="product product_not_on_sale" data-id="${product.product_id}">
                     <a href="product.html?id=${product.product_id}"><img src="${product.image}" alt="image" class="product_image" draggable="false"></a>
                     <div class="product_info">
-                        <p class="product_title"><strong>${product.name}</strong></p>
+                        <a href="product.html?id=${product.product_id}"><p class="product_title"><strong>${product.name}</strong></p></a>
                         <p>${product.price} kr</p>
                     </div>
                 </div>

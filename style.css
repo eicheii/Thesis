@@ -86,12 +86,18 @@ header, .logo > a {
     border-radius: 2px;
 }
 
+.product_info > a {
+    text-decoration: none;
+}
+
+.product_info > a > p, 
 .product_info > p {
     margin: 1.5px;
     text-align: left;
+    color: #000;
 }
 
-.product_info > .product_title:hover {
+.product_info > a > .product_title:hover {
     color: #8db7f1;
     transition: 0.3s;
 }
