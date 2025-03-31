@@ -9,8 +9,8 @@ fetch("data.json")
         products.forEach(product => {
             if (product.sale) {
                 let saleProductHTML = `
-                <div class="product" data-id="${product.product_id}" style="cursor: pointer;">
-                    <img src="${product.image}" alt="image" class="product_image" draggable="false">
+                <div class="product product_on_sale" data-id="${product.product_id}" style="cursor: pointer;">
+                    <a href="product.html?id=${product.product_id}"><img src="${product.image}" alt="image" class="product_image" draggable="false"></a>
                     <div class="product_info">
                         <p class="product_title"><strong>${product.name}</strong></p>
                         <p class="discounted_price">${product.discounted_price} kr</p>
@@ -22,7 +22,7 @@ fetch("data.json")
             } else if (!product.sale) { // These are the 'non-sale' items
                 let productHTML = `
                 <div class="product product_not_on_sale" data-id="${product.product_id}" style="cursor: pointer;">
-                    <img src="${product.image}" alt="image" class="product_image" draggable="false">
+                    <a href="product.html?id=${product.product_id}"><img src="${product.image}" alt="image" class="product_image" draggable="false"></a>
                     <div class="product_info">
                         <p class="product_title"><strong>${product.name}</strong></p>
                         <p>${product.price} kr</p>
@@ -61,54 +61,32 @@ const x = setInterval(function() {
   }
 }, 1000);
 
-// Modal
-$(document).on("click", ".product", function () {
-    let id = $(this).attr("data-id");
+// Product page
+$(document).ready(function () {
+    let params = new URLSearchParams(window.location.search);
+    let bookID = params.get("id");
 
     $.getJSON("data.json", function (data) {
-        let products = data.products;
+        let book = data.products.find(p => p.product_id == bookID);
 
-        for (let product of products) {
-            if (product.product_id == id) {
-                $("#modal_book_img").attr("src", product.image);
-                $("#modal_book_title").text(product.name);
-                $("#modal_book_description").text(product.description);
-                $("#modal_message").text(product.message);
+        if (book) {
+            $("#book_img").attr("src", book.image);
+            $("#book_title").text(book.name);
+            $("#book_description").text(book.description);
+            $("#message").text(book.message);
 
-                if (product.sale) {
-                    $("#modal_book_discounted_price").text(product.discounted_price + " kr");
-                    $("#modal_book_original_price").text(product.price + " kr");
+            if (book.sale) {
+                $("#book_discounted_price").text(book.discounted_price + " kr");
+                $("#book_original_price").text(book.price + " kr");
 
-                    // Add classes for specific CSS styling
-                    $("#modal_book_original_price").addClass("original-price-sale");
-                    $("#modal_book_discounted_price").addClass("discounted-price");
-                } else {
-                    $("#modal_book_discounted_price").text("");
-                    $("#modal_book_original_price").text(product.price + " kr");
+                // Add classes for specific CSS styling
+                $("#book_original_price").addClass("original-price-sale");
+                $("#book_discounted_price").addClass("discounted-price");
 
-                    // Remove classes
-                    $("#modal_book_original_price").removeClass("original-price-sale");
-                    $("#modal_book_discounted_price").removeClass("discounted-price");
-                }
-
-                $("#product_modal").fadeIn();
-                history.pushState({ product_id: id }, "", "/" + id);
-                return;
+            } else {
+                $("#book_discounted_price").text("");
+                $("#book_original_price").text(book.price + " kr");
             }
         }
-    });
-});
-
-// Close modal when clicking "×"
-$(".close").click(function () {
-    $("#product_modal").fadeOut();
-    history.pushState(null, "", "/");
-});
-
-// Close modal when clicking outside the modal content
-$(window).click(function (e) {
-    if ($(e.target).is("#product_modal")) {
-        $("#product_modal").fadeOut();
-        history.pushState(null, "", "/");
-    } 
-});
+    })
+})

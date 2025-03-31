@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HA bookstore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://images.icon-icons.com/759/PNG/512/laughing-face-stroke_icon-icons.com_64305.png" alt="logo" draggable="false">
+                    <h3>HA bookstore</h3>
+                </a>
+            </div>
+
+            <!-- add to cart button -->
+            <div class="cart-button-container">
+                <a href="./shoppingcart/cart.html" class="cart-button"> Go to cart</a>
+            </div>
+        </header>
+
+        <div class="go_back_to_homepage">
+            <a href="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                </svg>
+            </a>
+            <p>Go back</p>
+        </div>
+
+        <div class="book_content">
+            <!-- image -->
+            <div class="book_image_content">
+                <img id="book_img" src="data:," alt="Book image" draggable="false">
+            </div>
+            
+             <!-- title, price, description -->
+            <div class="book_information">
+                <h2 id="book_title"></h2>
+                <div class="book_price">
+                    <p id="book_discounted_price"></p>
+                    <p id="book_original_price"></p>
+                </div>
+                <p id="book_description"></p>
+            </div>
+    
+            <!-- low-stock message -->
+            <p id="message"></p>
+
+            <!-- button -->
+            <div class="add_to_cart_btn">
+                <button type="button">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

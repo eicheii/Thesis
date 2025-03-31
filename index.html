@@ -12,20 +12,28 @@
 <body>
     <div class="container">
         <header>
+            <!-- logo -->
             <div class="logo">
-                <img src="https://images.icon-icons.com/759/PNG/512/laughing-face-stroke_icon-icons.com_64305.png" alt="logo" draggable="false">
-                <h3>HA bookstore</h3>
+                <a href="#">
+                    <img src="https://images.icon-icons.com/759/PNG/512/laughing-face-stroke_icon-icons.com_64305.png" alt="logo" draggable="false">
+                    <h3>HA bookstore</h3>
+                </a>
             </div>
+
+            <!-- add to cart button -->
             <div class="cart-button-container">
                 <a href="./shoppingcart/cart.html" class="cart-button"> Go to cart</a>
             </div>
         </header>
+
+        <!-- banner -->
         <div class="banner">
             <div class="banner_information">
                 <h3>SALE ENDS IN..</h3>
                 <p id="countdown_timer"></p>
                 <p id="buy_now_txt">BUY NOW!</p>
             </div>
+            
             <div id="data_sale_container">
                 <!-- The products on sale are displayed here -->
             </div>
@@ -33,28 +41,6 @@
         
         <div id="data_container">
         <!-- The products not on sale are displayed here -->
-        </div>
-
-        <!-- Modal -->
-        <div id="product_modal" class="modal">
-            <div class="modal_container">
-                <span class="close">&times;</span>
-                <div class="modal_book_img_content">
-                    <img id="modal_book_img" src="data:," alt="Book image" draggable="false">
-                </div>
-                <div class="modal_book_information">
-                    <h2 id="modal_book_title"></h2>
-                    <div class="modal_book_price">
-                        <p id="modal_book_discounted_price"></p>
-                        <p id="modal_book_original_price"></p>
-                    </div>
-                    <p id="modal_book_description"></p>
-                </div>
-                <p id="modal_message"></p>
-                <div class="add_to_cart_btn">
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
         </div>
     </div>
 
