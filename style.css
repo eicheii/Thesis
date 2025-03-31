@@ -11,6 +11,9 @@ body {
 }
 
 /* Header */
+header {
+    margin-bottom: 0;
+}
 header, .logo {
     display: flex;
     justify-content: space-between;
@@ -29,8 +32,7 @@ header, .logo {
     display: flex;
     background-color: #ff524c;
     padding: 1%;
-    margin: 1%;
-    margin-bottom: 3%;
+    margin: 0 1% 2% 0;
 }
 
 .banner > .banner_information {
