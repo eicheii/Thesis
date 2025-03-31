@@ -12,7 +12,7 @@ fetch("data.json")
                 <div class="product" data-id="${product.product_id}" style="cursor: pointer;">
                     <img src="${product.image}" alt="image" class="product_image" draggable="false">
                     <div class="product_info">
-                        <p><strong>${product.name}</strong></p>
+                        <p class="product_title"><strong>${product.name}</strong></p>
                         <p class="discounted_price">${product.discounted_price} kr</p>
                         <p class="original_price">Original price: <s>${product.price} kr</s></p>
                     </div>
@@ -24,7 +24,7 @@ fetch("data.json")
                 <div class="product product_not_on_sale" data-id="${product.product_id}" style="cursor: pointer;">
                     <img src="${product.image}" alt="image" class="product_image" draggable="false">
                     <div class="product_info">
-                        <p><strong>${product.name}</strong></p>
+                        <p class="product_title"><strong>${product.name}</strong></p>
                         <p>${product.price} kr</p>
                     </div>
                 </div>
