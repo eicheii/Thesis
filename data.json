@@ -7,7 +7,8 @@
         "image": "https://image.bokus.com/images/9780141439471_383x_frankenstein_haftad",
         "price": "99",
         "sale": false,
-        "discounted_price": "70"
+        "discounted_price": "70",
+        "message": ""
     },
     {
         "product_id": "2",
@@ -17,7 +18,8 @@
         "image": "https://image.bokus.com/images/9780140167771_383x_the-secret-history_haftad",
         "price": "149",
         "sale": true,
-        "discounted_price": "104"
+        "discounted_price": "104",
+        "message": ""
     },
     {
         "product_id": "3",
@@ -27,7 +29,8 @@
         "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320549978i/334598.jpg",
         "price": "129",
         "sale": true,
-        "discounted_price": "79"
+        "discounted_price": "79",
+        "message": ""
     },
     {
         "product_id": "4",
@@ -37,7 +40,8 @@
         "image": "https://s2.adlibris.com/images/1431493/no-longer-human.jpg",
         "price": "99",
         "sale": true,
-        "discounted_price": "56"
+        "discounted_price": "56",
+        "message": ""
     },
     {
         "product_id": "5",
@@ -47,7 +51,8 @@
         "image": "https://image.bokus.com/images/9781840228304_383x_moby-dick",
         "price": "99",
         "sale": false,
-        "discounted_price": "79"
+        "discounted_price": "79",
+        "message": ""
     },
     {
         "product_id": "6",
@@ -57,7 +62,8 @@
         "image": "https://image.bokus.com/images/9780241252086_383x_white-nights_haftad",
         "price": "99",
         "sale": false,
-        "discounted_price": "49"
+        "discounted_price": "49",
+        "message": ""
     },
     {
         "product_id": "7",
@@ -65,9 +71,10 @@
         "author": "Virginia Woolf",
         "description": "Every summer, the Ramsays visit their summer home on the beautiful Isle of Skye, surrounded by the excitement and chatter of family and friends, mirroring Virginia Woolf’s own joyful holidays of her youth. But as time passes, and in its wake the First World War, the transience of life becomes ever more apparent through the vignette of the thoughts and observations of the novel’s disparate cast",
         "image": "https://image.bokus.com/images/9781847496577_383x_to-the-lighthouse_haftad",
-        "price": "109",
+        "price": "99",
         "sale": false,
-        "discounted_price": "79"
+        "discounted_price": "79",
+        "message": "Low stock!"
     },
     {
         "product_id": "8",
@@ -75,9 +82,10 @@
         "author": "George Eliot",
         "description": "She did not know then that it was Love who had come to her briefly as in a dream before awaking, with the hues of morning on his wings - that it was Love to whom she was sobbing her farewell as his image was banished by the blameless rigour of irresistible day'",
         "image": "https://image.bokus.com/images/9780141199795_383x_middlemarch_haftad",
-        "price": "159",
+        "price": "99",
         "sale": false,
-        "discounted_price": "109"
+        "discounted_price": "109",
+        "message": ""
     }
     ]
 }

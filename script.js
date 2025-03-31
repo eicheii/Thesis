@@ -73,6 +73,7 @@ $(document).on("click", ".product", function () {
                 $("#modal_book_img").attr("src", product.image);
                 $("#modal_book_title").text(product.name);
                 $("#modal_book_description").text(product.description);
+                $("#modal_message").text(product.message);
 
                 if (product.sale) {
                     $("#modal_book_discounted_price").text(product.discounted_price + " kr");
@@ -91,6 +92,7 @@ $(document).on("click", ".product", function () {
                 }
 
                 $("#product_modal").fadeIn();
+                history.pushState({ product_id: id }, "", "/" + id);
                 return;
             }
         }
@@ -100,11 +102,13 @@ $(document).on("click", ".product", function () {
 // Close modal when clicking "×"
 $(".close").click(function () {
     $("#product_modal").fadeOut();
+    history.pushState(null, "", "/");
 });
 
 // Close modal when clicking outside the modal content
 $(window).click(function (e) {
     if ($(e.target).is("#product_modal")) {
         $("#product_modal").fadeOut();
+        history.pushState(null, "", "/");
     } 
 });

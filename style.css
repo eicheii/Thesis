@@ -135,8 +135,26 @@ body {
     color: #999;
 }
 
-.discounted-price {
+.discounted-price, #modal_message {
     color: #ff0000;
+}
+
+#modal_message {
+    position: absolute;
+    bottom: 80px;
+    right: 40px;
+    text-transform: uppercase;
+}
+
+.add_to_cart_btn {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+.add_to_cart_btn > button {
+    width: 110px;
+    height: 40px;
 }
 
 .close {
