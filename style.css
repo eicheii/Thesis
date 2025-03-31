@@ -13,7 +13,6 @@ body {
 /* Header */
 header {
     margin-bottom: 0;
-    border-bottom: 1px solid #444;
 }
 header, .logo > a {
     display: flex;
@@ -213,6 +212,7 @@ header, .logo > a {
     background-color: #6eaaff;
     color: #fdfdfd;
     border: none;
+    cursor: pointer;
 }
 
 .add_to_cart_btn > button:hover {
