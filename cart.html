@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - HA Bookstore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://images.icon-icons.com/759/PNG/512/laughing-face-stroke_icon-icons.com_64305.png"
+                        alt="logo" draggable="false">
+                    <h3>HA bookstore</h3>
+                </a>
+            </div>
+        </header>
+
+        <div class="cart-container">
+            <h2>Your Shopping Cart</h2>
+            
+            <div id="cart_items">
+                <!-- Cart items dynamically populated here -->
+            </div>
+
+            <div class="cart-summary">
+                <h3>Summary</h3>
+                <p>Total: <span id="cart_total">0</span> kr</p>
+                <button onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading_overlay" class="hidden">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Thank You Modal -->
+        <div id="thank_you_modal" class="hidden">
+            <div class="modal_content">
+                <h2>Thank you for your purchase!</h2>
+                <p>Your order has been placed.</p>
+                <button onclick="closeThankYou()">Close</button>
+            </div>
+        </div>
+        
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

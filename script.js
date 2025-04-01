@@ -87,6 +87,131 @@ $(document).ready(function () {
                 $("#book_discounted_price").text("");
                 $("#book_original_price").text(book.price + " kr");
             }
+
+            //  Add to Cart
+            $(".add_to_cart_btn button").click(function () {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const productToAdd = {
+                    id: book.product_id,
+                    title: book.name,
+                    img: book.image,
+                    price: parseFloat(book.sale ? book.discounted_price : book.price),
+                    quantity: 1
+                };
+
+                const existingIndex = cart.findIndex(p => p.id == productToAdd.id);
+                existingIndex !== -1 ? cart[existingIndex].quantity++ : cart.push(productToAdd);
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                alert("Added to cart!");
+            });
         }
-    })
-})
+    });
+
+    // Cart page check
+    if ($("#cart_items").length) {
+        displayCart();
+    }
+});
+
+// Cart Functions 
+function displayCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartContainer = $("#cart_items");
+    cartContainer.empty();
+
+    // fixed bookmark 
+    const fullCart = [...cart, hiddenBookmark];
+
+    let total = 0;
+
+    if (!fullCart.length) {
+        cartContainer.html("<p>Your cart is empty.</p>");
+        $("#cart_total").text("0");
+        return;
+    }
+
+    fullCart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        // Remove button only for user-added items
+        const removeButton = item.id !== hiddenBookmark.id
+            ? `<button onclick="removeFromCart('${item.id}')">Remove</button>`
+            : `<button disabled style="opacity: 0.5; cursor: not-allowed;">Included</button>`;
+
+        cartContainer.append(`
+            <div class="cart-item">
+                <img src="${item.img}" alt="${item.title}" width="50">
+                <div>
+                    <h4>${item.title}</h4>
+                    <p>${item.price} kr x ${item.quantity} = ${subtotal.toFixed(2)} kr</p>
+                    ${removeButton}
+                </div>
+            </div>
+        `);
+    });
+
+    $("#cart_total").text(total.toFixed(2));
+}
+
+
+function removeFromCart(id) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+}
+
+function checkout() {
+    $("#loading_overlay").removeClass("hidden");
+    setTimeout(() => {
+        $("#loading_overlay").addClass("hidden");
+        $("#thank_you_modal").removeClass("hidden");
+        localStorage.removeItem("cart");
+        displayCart();
+        
+        
+        launchStarConfetti();
+    }, 1500);
+}
+
+// Confettii
+function launchStarConfetti() {
+    var duration = 2 * 1000; // 2 seconds
+    var end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            shapes: ['star'],
+            colors: ['#ffb6c1', '#6eaaff']
+        });
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            shapes: ['star'],
+            colors: ['#ffb6c1','#6eaaff']
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+}
+const hiddenBookmark = {
+    id: 'bookmark-secret-item',
+    title: 'Super Bookmark',
+    img: 'https://www.sfbok.se/sites/default/files/styles/1000x/sfbok/sfbokbilder/715/715351.jpg?bust=1662383503&itok=lu8dpRGh',
+    price: 9,
+    quantity: 1
+};
+
+function closeThankYou() {
+    $("#thank_you_modal").addClass("hidden");
+}
