@@ -120,10 +120,8 @@ function displayCart() {
     const cartContainer = $("#cart_items");
     cartContainer.empty();
 
-    // fixed bookmark 
-    const fullCart = [...cart, hiddenBookmark];
-
-    let total = 0;
+    const bookmarkRemoved = localStorage.getItem("bookmarkRemoved") === "true";
+    const fullCart = bookmarkRemoved ? cart : [...cart, hiddenBookmark];
 
     if (!fullCart.length) {
         cartContainer.html("<p>Your cart is empty.</p>");
@@ -131,14 +129,13 @@ function displayCart() {
         return;
     }
 
+    let total = 0;
+
     fullCart.forEach(item => {
         const subtotal = item.price * item.quantity;
         total += subtotal;
 
-        // Remove button only for user-added items
-        const removeButton = item.id !== hiddenBookmark.id
-            ? `<button onclick="removeFromCart('${item.id}')">Remove</button>`
-            : `<button disabled style="opacity: 0.5; cursor: not-allowed;">Included</button>`;
+        const removeButton = `<button onclick="removeFromCart('${item.id}')">Remove</button>`;
 
         cartContainer.append(`
             <div class="cart-item">
@@ -155,30 +152,37 @@ function displayCart() {
     $("#cart_total").text(total.toFixed(2));
 }
 
-
 function removeFromCart(id) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart = cart.filter(item => item.id !== id);
-    localStorage.setItem("cart", JSON.stringify(cart));
+
+    if (id === hiddenBookmark.id) {
+        localStorage.setItem("bookmarkRemoved", "true");
+    } else {
+        cart = cart.filter(item => item.id !== id);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
     displayCart();
 }
 
+// Checkout function to reset bookmark visibility
 function checkout() {
     $("#loading_overlay").removeClass("hidden");
     setTimeout(() => {
         $("#loading_overlay").addClass("hidden");
         $("#thank_you_modal").removeClass("hidden");
+
         localStorage.removeItem("cart");
+        localStorage.removeItem("bookmarkRemoved"); // <--- reset bookmark
+
         displayCart();
-        
-        
         launchStarConfetti();
     }, 1500);
 }
 
-// Confettii
+// Confetti 
 function launchStarConfetti() {
-    var duration = 2 * 1000; // 2 seconds
+    var duration = 2 * 1000;
     var end = Date.now() + duration;
 
     (function frame() {
@@ -202,8 +206,10 @@ function launchStarConfetti() {
         if (Date.now() < end) {
             requestAnimationFrame(frame);
         }
-    }());
+    })();
 }
+
+//  Bookmark Item 
 const hiddenBookmark = {
     id: 'bookmark-secret-item',
     title: 'Super Bookmark',
