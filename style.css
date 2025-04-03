@@ -197,8 +197,8 @@ header, .logo > a {
 
 #message {
     position: absolute;
-    bottom: 80px;
-    right: 45px;
+    bottom: 90px;
+    right: 65px;
     text-transform: uppercase;
 }
 
