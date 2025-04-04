@@ -421,3 +421,27 @@ header, .logo > a {
     0%, 100% { color: #fff700; }
     50% { color: #ff0000; }
 }
+
+.low-stock-alert {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 90px;
+    right: 165px;
+    animation: blinkText 1s infinite, shake 0.4s infinite;
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-1px); }
+    100% { transform: translateX(0); }
+}

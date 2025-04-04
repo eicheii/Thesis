@@ -74,7 +74,7 @@
         "price": "99",
         "sale": false,
         "discounted_price": "79",
-        "message": "Low stock!"
+        "message": "⚠️ ONLY 2 LEFT IN STOCK!"
     },
     {
         "product_id": "8",
