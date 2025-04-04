@@ -445,3 +445,30 @@ header, .logo > a {
     75% { transform: translateX(-1px); }
     100% { transform: translateX(0); }
 }
+
+.recommended-tag {
+    background-color: #f0f8ff;
+    color: #555;
+    font-size: 12px;
+    font-style: italic;
+    padding: 3px 8px;
+    display: inline-block;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.remove-subtle {
+    background-color: #eee;
+    color: #888;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.remove-subtle:hover {
+    background-color: #ddd;
+    color: #333;
+}

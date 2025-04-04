@@ -1,3 +1,11 @@
+const hiddenBookmark = {
+    id: 'bookmark-secret-item',
+    title: 'Super Bookmark (Free Gift)',
+    img: 'https://www.sfbok.se/sites/default/files/styles/1000x/sfbok/sfbokbilder/715/715351.jpg?bust=1662383503&itok=lu8dpRGh',
+    price: 9,
+    quantity: 1
+};
+
 // Fetch JSON data and display it in HTML
 fetch("data.json")
     .then(response => response.json())
@@ -110,16 +118,17 @@ $(document).ready(function () {
     }
 });
 
-// Cart Functions 
 function displayCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartContainer = $("#cart_items");
     cartContainer.empty();
 
     const bookmarkRemoved = localStorage.getItem("bookmarkRemoved") === "true";
-    const fullCart = bookmarkRemoved ? cart : [...cart, hiddenBookmark];
+    if (!bookmarkRemoved && !cart.find(item => item.id === hiddenBookmark.id)) {
+        cart.push(hiddenBookmark);
+    }
 
-    if (!fullCart.length) {
+    if (!cart.length) {
         cartContainer.html("<p>Your cart is empty.</p>");
         $("#cart_total").text("0");
         return;
@@ -127,19 +136,23 @@ function displayCart() {
 
     let total = 0;
 
-    fullCart.forEach(item => {
+    cart.forEach(item => {
         const subtotal = item.price * item.quantity;
         total += subtotal;
 
-        const removeButton = `<button onclick="removeFromCart('${item.id}')">Remove</button>`;
+        const isHidden = item.id === hiddenBookmark.id;
+        const removeBtn = `<button onclick="removeFromCart('${item.id}')">Remove</button>`;
+        const tag = isHidden ? `<div class="recommended-tag">Recommended for book lovers</div>` : '';
+        
 
         cartContainer.append(`
             <div class="cart-item">
                 <img src="${item.img}" alt="${item.title}" width="50">
                 <div>
+                    ${tag}
                     <h4>${item.title}</h4>
                     <p>${item.price} kr x ${item.quantity} = ${subtotal.toFixed(2)} kr</p>
-                    ${removeButton}
+                    ${removeBtn}
                 </div>
             </div>
         `);
@@ -148,6 +161,8 @@ function displayCart() {
     $("#cart_total").text(total.toFixed(2));
 }
 
+
+//  Remove item
 function removeFromCart(id) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -161,7 +176,8 @@ function removeFromCart(id) {
     displayCart();
 }
 
-// Checkout function to reset bookmark visibility
+
+//  Checkout function
 function checkout() {
     $("#loading_overlay").removeClass("hidden");
     setTimeout(() => {
@@ -169,14 +185,15 @@ function checkout() {
         $("#thank_you_modal").removeClass("hidden");
 
         localStorage.removeItem("cart");
-        localStorage.removeItem("bookmarkRemoved"); // <--- reset bookmark
+        localStorage.removeItem("bookmarkRemoved");
 
         displayCart();
         launchStarConfetti();
     }, 1500);
 }
 
-// Confetti 
+
+// 🎉 Confetti
 function launchStarConfetti() {
     var duration = 2 * 1000;
     var end = Date.now() + duration;
@@ -196,7 +213,7 @@ function launchStarConfetti() {
             spread: 55,
             origin: { x: 1 },
             shapes: ['star'],
-            colors: ['#ffb6c1','#6eaaff']
+            colors: ['#ffb6c1', '#6eaaff']
         });
 
         if (Date.now() < end) {
@@ -204,15 +221,6 @@ function launchStarConfetti() {
         }
     })();
 }
-
-//  Bookmark Item 
-const hiddenBookmark = {
-    id: 'bookmark-secret-item',
-    title: 'Super Bookmark',
-    img: 'https://www.sfbok.se/sites/default/files/styles/1000x/sfbok/sfbokbilder/715/715351.jpg?bust=1662383503&itok=lu8dpRGh',
-    price: 9,
-    quantity: 1
-};
 
 function closeThankYou() {
     $("#thank_you_modal").addClass("hidden");
