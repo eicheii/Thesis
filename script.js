@@ -1,6 +1,6 @@
 const hiddenBookmark = {
     id: 'bookmark-secret-item',
-    title: 'Super Bookmark (Free Gift)',
+    title: 'Super Bookmark ',
     img: 'https://www.sfbok.se/sites/default/files/styles/1000x/sfbok/sfbokbilder/715/715351.jpg?bust=1662383503&itok=lu8dpRGh',
     price: 9,
     quantity: 1
