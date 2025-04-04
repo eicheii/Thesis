@@ -30,12 +30,6 @@ header, .logo > a {
 }
 
 /* Banner */
-.banner {
-    display: flex;
-    background-color: #ff524c;
-    padding: 1%;
-    margin: 0 0 2% 0;
-}
 
 .banner > .banner_information {
     width: 33%;
@@ -372,4 +366,58 @@ header, .logo > a {
     padding:20px;
     border-radius:8px;
     text-align:center;
+}
+
+.banner {
+    display: flex;
+    background: linear-gradient(135deg, #ff524c, #d41616);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    padding: 1%;
+    margin: 0 0 2% 0;
+    animation: pulse-bg 2s infinite;
+}
+
+@keyframes pulse-bg {
+    0%, 100% { background-color: #ff524c; }
+    50% { background-color: #ff2e2e; }
+}
+
+.banner_information {
+    width: 33%;
+    padding: 3%;
+    color: #eee;
+    margin: auto;
+    text-align: center;
+}
+
+.banner_information > h3 {
+    margin-bottom: -10%;
+    font-size: 35px;
+}
+
+#countdown_timer {
+    margin-bottom: -5%;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#buy_now_txt {
+    font-size: 25px;
+}
+
+.fomo_msg {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    animation: blinkText 1.5s infinite;
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes flash {
+    0%, 100% { color: #fff700; }
+    50% { color: #ff0000; }
 }

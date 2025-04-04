@@ -37,28 +37,24 @@ fetch("data.json")
     .catch(error => console.error("Error loading data:", error));
 
 // Countdown timer
-const countDownDuration = 60 * 60 * 800;
-const startTime = new Date().getTime();
-const countDownDate = startTime + countDownDuration;
+let countdown = 2799; // 46m 39s
+const timer = document.getElementById("countdown_timer");
 
-const x = setInterval(function() {
-  const now = new Date().getTime();
+const interval = setInterval(() => {
+    const minutes = Math.floor(countdown / 60);
+    const seconds = countdown % 60;
+    timer.innerHTML = `0h ${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
+    countdown--;
 
-  const distance = countDownDate - now;
+    if (countdown < 300 && !timer.classList.contains('flashy')) {
+        timer.classList.add('flashy');
+    }
 
-  // Time calculations for hours, minutes and seconds
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("countdown_timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-
-  // If the countdown is finished, display "EXPIRED SOON"
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown_timer").innerHTML = "EXPIRED SOON";
-  }
+    if (countdown <= 0) {
+        clearInterval(interval);
+        timer.innerHTML = "EXPIRED";
+        document.getElementById("buy_now_txt").textContent = "TOO LATE!";
+    }
 }, 1000);
 
 // Product page
