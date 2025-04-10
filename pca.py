@@ -1,30 +1,35 @@
+# Import necessary libraries
+import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
-# Läs in din CSV-fil
-df = pd.read_csv("din_fil.tsv", sep="\t")  # <--- det viktiga är sep="\t"
+# Example dataset creation
+np.random.seed(42)
+data = np.random.rand(100, 4)  # 100 samples, 4 features
+df = pd.DataFrame(data, columns=['Feature1', 'Feature2', 'Feature3', 'Feature4'])
 
-# Om du har en kolumn med klasser/etiketter (t.ex. 'label'), separera den:
-X = df.drop(columns=['label'])  # byt ut 'label' mot rätt kolumnnamn
-y = df['label']
-
-# Standardisera funktionerna
+# Standardize the data
 scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+scaled_data = scaler.fit_transform(df)
 
-# PCA
-pca = PCA(n_components=2)
-X_pca = pca.fit_transform(X_scaled)
+# Perform PCA
+pca = PCA(n_components=2)  # reduce to 2 principal components
+principal_components = pca.fit_transform(scaled_data)
 
-# Visualisering
-plt.figure(figsize=(8, 6))
-for label in y.unique():
-    plt.scatter(X_pca[y == label, 0], X_pca[y == label, 1], label=label)
+# Create a DataFrame for visualization
+pca_df = pd.DataFrame(data=principal_components, columns=['PC1', 'PC2'])
+
+# Explained variance
+print(f'Explained variance ratio: {pca.explained_variance_ratio_}')
+
+# Plot the PCA result
+plt.figure(figsize=(8,6))
+plt.scatter(pca_df['PC1'], pca_df['PC2'], edgecolor='k', alpha=0.7)
 plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
-plt.title('PCA - Egen CSV-fil')
-plt.legend()
+plt.title('PCA - Principal Component Analysis')
 plt.grid(True)
 plt.show()
+
