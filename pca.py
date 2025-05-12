@@ -1,54 +1,54 @@
-import pandas as pd
 from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
+import pandas as pd
 
-# Load data
-df_a = pd.read_csv('A_test_data.tsv', sep='\t')
-df_b = pd.read_csv('B_test_data.tsv', sep='\t')
+# Load Group A and B standardized data
+a_path = 'A.csv'
+b_path = 'B.csv'
 
-# Add labels to datasets for distinction
-df_a['Test'] = 'A'
-df_b['Test'] = 'B'
+a_df = pd.read_csv(a_path)
+b_df = pd.read_csv(b_path)
+
+# Assign group labels
+a_df['Group'] = 'A'
+b_df['Group'] = 'B'
 
 # Combine datasets
-combined_df = pd.concat([df_a, df_b], ignore_index=True)
+combined_df = pd.concat([a_df, b_df], ignore_index=True)
 
-# Columns for PCA
-columns_for_pca = [
-    'Gaze point X', 'Gaze point Y',
-    'Gaze point left X', 'Gaze point left Y',
-    'Gaze point right X', 'Gaze point right Y'
-]
+# Separate features and participant labels
+features = combined_df.drop(columns=['Participant name', 'Group'])
+participant_names = combined_df['Participant name']
+group_labels = combined_df['Group']
 
-# Drop rows with missing values
-pca_df = combined_df[columns_for_pca + ['Test']].dropna()
-
-# Standardize data
-scaler = StandardScaler()
-scaled_data = scaler.fit_transform(pca_df[columns_for_pca])
-
-# Perform PCA
+# Perform PCA to reduce to 2 components
 pca = PCA(n_components=2)
-principal_components = pca.fit_transform(scaled_data)
+pca_result = pca.fit_transform(features)
 
-# PCA result with labels
-pca_results_df = pd.DataFrame(principal_components, columns=['PC1', 'PC2'])
-pca_results_df['Test'] = pca_df['Test'].values
+# Flip PC2 for visual consistency (optional)
+pca_result[:, 1] *= -1
 
-# Explained variance
-print(f'Explained variance ratio: {pca.explained_variance_ratio_}')
+# Create a DataFrame for plotting
+pca_df = pd.DataFrame({
+    'PC1': pca_result[:, 0],
+    'PC2': pca_result[:, 1],
+    'Group': group_labels,
+    'Participant name': participant_names
+})
 
-# Plot PCA results with distinction between tests
-plt.figure(figsize=(10,7))
+# Define colors
+group_colors = {'A': '#F07F92', 'B': '#94BDC3'}
 
-for label in pca_results_df['Test'].unique():
-    subset = pca_results_df[pca_results_df['Test'] == label]
-    plt.scatter(subset['PC1'], subset['PC2'], label=f'Test {label}', alpha=0.7, edgecolor='k')
+# Plot
+plt.figure(figsize=(8, 6))
+for group, color in group_colors.items():
+    subset = pca_df[pca_df['Group'] == group]
+    plt.scatter(subset['PC1'], subset['PC2'], label=f'Group {group}', c=color, s=100, edgecolor='black')
 
+plt.title('PCA of Eye Movement Features by Group')
 plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
-plt.title('PCA of Combined Eye-tracking Gaze Data (A vs B)')
 plt.legend()
 plt.grid(True)
+plt.tight_layout()
 plt.show()
